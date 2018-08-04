@@ -83,12 +83,3 @@ Therefore I cannot judge the software's compatibility or stability with newer ve
 Note B: Again I have specified the camera version as I have the version 2 No-IR camera, I have not tested this software with the version 1 camera.<br/>
 
 If you are using any other versions of the Raspberry Pi, RasPi Camera, Raspbian or Python it is up to you to get it working for your setup. It would be impossible for me to test this software on every single configuration possible.
-
-
-
-## Contributions
-
-I welcome people contributing and making Pull Requests but please note that any changes will be fully tested over a few days or weeks to ensure stability. Thus changes or Commits to this repo will not happen straight away. Also, changes are optional and some contributions will not be used for one reason or another. Please don't be offended if I don't use your code. 
-I have my own way of doing things so please be patient.<br/>
-
-The software is released under the GNU GPL V3, your code contributions must be supplied under the same license.
