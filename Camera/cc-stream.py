@@ -1,6 +1,6 @@
 ### Copyright ###
 # Cage Camera Stream
-# Version: 0.1 Alpha
+# Version: 0.1.1 Alpha
 # Author: Morgan Winters
 # Created: 18/03/2018
 # Copyright (C) 2018 Morgan Winters
@@ -84,7 +84,7 @@ except:
 ## Variables ##
 ## Static Variables ##
 # Version #
-Version = "0.1 Alpha"
+Version = "0.1.1 Alpha"
 #
 
 # Pet Name #
@@ -148,7 +148,6 @@ def ReadSensor():
   global CurrentHumidity
   global CurrentMBar
   global CurrentPSI
-  #FailureLogged = False
   try:
     # This section was written by Adafruit Industries and was copied and then modified from the #
     # example file included with the Adafruit BME280 library: #
@@ -165,7 +164,9 @@ def ReadSensor():
     # End of Adafruit code #
   except:
     print("Unable to read temperature sensor.")
+#
 
+# Puts Sensor Readings Into A String 
 def GetSensorReading():
   global CurrentTemp
   global CurrentHumidity
@@ -173,7 +174,8 @@ def GetSensorReading():
   global CurrentPSI
   try:
     ReadSensor()
-    SensorReadingString = "Temperature; " + CurrentTemp + "C | Relative Humidity; " + CurrentHumidity + "% | Pressure; " + CurrentMBar + "mB - " + CurrentPSI + "psi"
+    SensorReadingString = "Temperature; " + CurrentTemp + "C | Relative Humidity; " + CurrentHumidity + \
+                          "% | Pressure; " + CurrentMBar + "mB - " + CurrentPSI + "psi"
     return (SensorReadingString)
   except:
     print("Unable to read temperature sensor.") 
@@ -186,8 +188,8 @@ def GetSensorReading():
 def StreamCamera():
   global RecordingStatus
   global AnnotationUpdateSpeed
-  print("Initialising...")
-  # Set camera recording options
+  print("Setting up camera...")
+  # Set camera capture options
   Camera.resolution = (1280, 960)
   Camera.framerate = 25
   Camera.exposure_mode = "night"
@@ -223,9 +225,10 @@ def StreamCamera():
       print("cc-stream stopped.")
       UpdateConfigFile('status', 'camera', "False")
       raise
+    except:
+      print ("Unable to overlay text.")
   else:
     pass
-#
 ##
 ###
 
