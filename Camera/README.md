@@ -7,51 +7,53 @@ cc-stream.py captures data from the Raspberry Pi camera module and pipes it to V
 cc-record.py records video data and saves it to a .h264 file (see installation below) for viewing or editing at a later time.
 Both programs require the hec-status.ini file contained in the main Hamster Environment Control folder. 
 This file is checked once a second (faster if need) and will overlay a text annotation on the stream or video with time/date, cage light status, temperature ect for the duration of the stream/video.
-cc-record.py will ask if you want the text overlay enabled and also asks the user to specify the length of the video before the camera starts.
+cc-record.py will ask if you want the text overlay enabled and also asks the user to specify the length of the video before the camera starts.<br/>
 I wrote this software for the camera in my hamster cage but this code could easily be modified for use as a CCTV camera for wildlife, front doors, baby rooms or even on robotic rovers.
 
 
 ## Requirements
 
-Hardware:
-Raspberry Pi 1 Model B or later (see Note A below),
-Raspberry Pi Camera Module (Normal or No-IR) Version 2 (see Note B below),
-Adafruit Industires BME280 Temperature Sensor,
-Internet connection for installation - Local network and another device for viewing the stream.
+Hardware:<br/>
+Raspberry Pi 1 Model B or later (see Note A below),<br/>
+Raspberry Pi Camera Module (Normal or No-IR) Version 2 (see Note B below),<br/>
+Adafruit Industires BME280 Temperature Sensor,<br/>
+Internet connection for installation - Local network and another device for viewing the stream.<br/><br/>
 
-Software:
-Raspbian Wheezy Version 2013-09-10 (see Note A Below),
-Python 2.7 (see Note A Below),
-Adafruit Industries BME280 Python library,
-PiCamera library,
-VLC library
+Software:<br/>
+Raspbian Wheezy Version 2013-09-10 (see Note A Below),<br/>
+Python 2.7 (see Note A Below),<br/>
+Adafruit Industries BME280 Python library,<br/>
+PiCamera library,<br/>
+VLC library<br/>
 
 
 ## Installation
 
 Step 1) To download the Adafruit BME280 library, go to https://github.com/adafruit/Adafruit_Python_BME280 
-and follow the instructions as outlined in the README file.
+and follow the instructions as outlined in the README file.<br/>
 
 Step 2) To download the PiCamera library, go to https://picamera.readthedocs.io/en/release-1.13/install.html 
-and follow the installation instructions on that page.
+and follow the installation instructions on that page.<br/>
 
 Step 3) To download VLC, type the following commands into the terminal:
 ```
 sudo apt-get update
 sudo apt-get install vlc
 ```
+<br/>
 
 Step 4) To download Hamster Environment Control, type the following into the terminal:
 ```
 git clone https://github.com/mlwinters/Hamster-Environment-Control.git
 ```
+<br/>
 
 Step 5) Finally we need to create a folder where cc-record.py will save captured videos to.
 Type the follow into the terminal:
 ```
 sudo mkdir /home/pi/Hamster-Environment-Control/Videos
 ```
-
+<br/>
 
 ## Execution
 
@@ -64,8 +66,8 @@ To record camera data to a video file, type the following:
 ```
 python /home/pi/Hamster-Environment-Control/Camera/cc-record.py
 ```
-cc-record.py will ask you to specify a the length for the video, type in a value in whole minutes.
-cc-record.py will also ask you if you want the text annotation to be overlayed on the video. 
+cc-record.py will ask you to specify a the length for the video, type in a value in whole minutes.<br/>
+cc-record.py will also ask you if you want the text annotation to be overlayed on the video. <br/>
 Once the recording has started, your video file will be saved to:
 ```
 /home/pi/Hamster-Environment-Control/Videos/
@@ -75,19 +77,18 @@ And will have the time and date (as it was when the recording started) as the fi
 
 ## Misc
 
-Note A: I have specified the Raspberry Pi version/model and operating system version due to the fact that I have not tested these programs on any later version of the Raspberry Pi, Raspbian or with Python 3.x.
-Therefore I cannot judge the software's compatibility or stability with newer versions of the Raspberry Pi like the Pi2, Pi3 ect, Raspbian or Python 3.x.
+Note A: I have specified the Raspberry Pi version/model and operating system version due to the fact that I have not tested these programs on any later version of the Raspberry Pi, Raspbian or with Python 3.x.<br/>
+Therefore I cannot judge the software's compatibility or stability with newer versions of the Raspberry Pi like the Pi2, Pi3 ect, Raspbian or Python 3.x.<br/>
 
-Note B: Again I have specified the camera version as I have the version 2 No-IR camera, I have not tested this software with the version 1 camera.
+Note B: Again I have specified the camera version as I have the version 2 No-IR camera, I have not tested this software with the version 1 camera.<br/>
 
-If you are using any other versions of the Raspberry Pi, RasPi Camera, Raspbian or Python it is up to you to get it working for your setup.
-It would be impossible for me to test this software on every single configuration possible.
+If you are using any other versions of the Raspberry Pi, RasPi Camera, Raspbian or Python it is up to you to get it working for your setup. It would be impossible for me to test this software on every single configuration possible.
 
 
 
 ## Contributions
 
 I welcome people contributing and making Pull Requests but please note that any changes will be fully tested over a few days or weeks to ensure stability. Thus changes or Commits to this repo will not happen straight away. Also, changes are optional and some contributions will not be used for one reason or another. Please don't be offended if I don't use your code. 
-I have my own way of doing things so please be patient.
+I have my own way of doing things so please be patient.<br/><br/>
 
 The software is released under the GNU GPL V3, your code contributions must be supplied under the same license.
