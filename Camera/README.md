@@ -2,8 +2,8 @@
 
 ## Description
 
-These two programs are used for the cage camera on my Hamster Environment Control project. 
-cc-stream.py captures data from the Raspberry Pi camera module and pipes it to VLC to be live streamed over a local network.
+These two programs are used for the cage camera on my Hamster Environment Control project. <br/>
+cc-stream.py captures data from the Raspberry Pi camera module and pipes it to VLC to be live streamed over a local network. <br/>
 cc-record.py records video data and saves it to a .h264 file (see installation below) for viewing or editing at a later time.
 Both programs require the hec-status.ini file contained in the main Hamster Environment Control folder. 
 This file is checked once a second (faster if need) and will overlay a text annotation on the stream or video with time/date, cage light status, temperature ect for the duration of the stream/video.
@@ -29,10 +29,10 @@ VLC library<br/>
 
 ## Installation
 
-Step 1) To download the Adafruit BME280 library, go to https://github.com/adafruit/Adafruit_Python_BME280 
+Step 1) To download the Adafruit BME280 library, go to https://github.com/adafruit/Adafruit_Python_BME280 <br/>
 and follow the instructions as outlined in the README file.<br/>
 
-Step 2) To download the PiCamera library, go to https://picamera.readthedocs.io/en/release-1.13/install.html 
+Step 2) To download the PiCamera library, go to https://picamera.readthedocs.io/en/release-1.13/install.html <br/>
 and follow the installation instructions on that page.<br/>
 
 Step 3) To download VLC, type the following commands into the terminal:
