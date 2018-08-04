@@ -89,6 +89,6 @@ If you are using any other versions of the Raspberry Pi, RasPi Camera, Raspbian 
 ## Contributions
 
 I welcome people contributing and making Pull Requests but please note that any changes will be fully tested over a few days or weeks to ensure stability. Thus changes or Commits to this repo will not happen straight away. Also, changes are optional and some contributions will not be used for one reason or another. Please don't be offended if I don't use your code. 
-I have my own way of doing things so please be patient.<br/><br/>
+I have my own way of doing things so please be patient.<br/>
 
 The software is released under the GNU GPL V3, your code contributions must be supplied under the same license.
