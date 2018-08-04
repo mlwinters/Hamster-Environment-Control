@@ -50,9 +50,18 @@ import picamera
 
 ### SETUP ###
 # Config Setup #
-ConfigFile = "/home/pi/Hamster-Environment-Control/hec-status.ini"
-Config = ConfigParser.ConfigParser()
-Config.read(ConfigFile)
+try:
+   ConfigFile = "/home/pi/Hamster-Environment-Control/hec-status.ini"
+   Config = ConfigParser.ConfigParser()
+   Config.read(ConfigFile)
+except:
+  print("Unable to load " + ConfigFile + ".")
+  print("Please make sure it is present and not corrupted and try again.")
+  print("")
+  print("Cage Camera Stream will now exit")
+  sleep(2)
+  exit()
+
 
 ## Sensor Setup ##
 try:
