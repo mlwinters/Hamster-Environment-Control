@@ -1,6 +1,6 @@
 ### Copyright ###
 # Cage Camera Stream
-# Version: 0.1 Alpha
+# Version: 0.11 Alpha
 # Author: Morgan Winters
 # Created: 18/03/2018
 # Copyright (C) 2018 Morgan Winters
@@ -84,7 +84,7 @@ except:
 ## Variables ##
 ## Static Variables ##
 # Version #
-Version = "0.1 Alpha"
+Version = "0.11 Alpha"
 #
 
 # Pet Name #
