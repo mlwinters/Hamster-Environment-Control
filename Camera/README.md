@@ -86,7 +86,7 @@ And will have the time and date (as it was when the recording started) as the fi
 
 ## Copyright
 
-Copyright (C) 2018 Morgan Winters <morgan.l.winters@gmail.com><br/>
+Copyright (C) 2018 Morgan Winters (morgan.l.winters@gmail.com)<br/>
 
 
 ## Special Thanks
