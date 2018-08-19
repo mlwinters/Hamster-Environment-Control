@@ -91,4 +91,4 @@ Copyright (C) 2018 Morgan Winters <morgan.l.winters@gmail.com><br/>
 
 ## Special Thanks
 
-Adafruit Industries, Dave Jones <dave@waveform.org.uk><br/>
+Adafruit Industries, Dave Jones (dave@waveform.org.uk)<br/>
