@@ -26,6 +26,8 @@ It is assumed that you have a basic knowledge of Linux/Python and that you are r
 
 This system uses the RPi GPIO library, Adafruit BME280 Python library and others which are NOT inclued in this repository. See "Installation" below to find out how to download and install all the required libraries.<br/>
 
+Although HEC.py, cc-stream and cc-record needs to Adafruit BME280 sensor board and its driver to function. I have release "-no-sensor" versions of the camera software incase you wish to use it for a different type of project such as dash-cams or robots/rovers.<br/>
+
 It is recommended that you connect your RPi to your home network to allow you control your RPi via a SSH connection, view network camera ect.<br/>
 Internet connection is required for installation. Linux will also try to acquire the time/date during system boot. Unless you have a Real Time Clock module, you should keep your RPi connected to the internet so that it keeps an accurate time.<br/>
 HEC.py or either of the camera programs do not need the internet themselves but do require the time/date.<br/>
@@ -118,10 +120,12 @@ If these packages are already installed, apt-get won't try to reinstall them.<br
 
 b) To download the Adafruit GPIO library, go to https://github.com/adafruit/Adafruit_Python_GPIO
 and follow the instructions as outlined in the README file.<br/>
+(if your only going to use the "-no-sensor" versions, you can skip this step)<br/>
 
 c) (Downloading/Installing Adafruit BME280 library)
 To download the Adafruit BME280 library, go to https://github.com/adafruit/Adafruit_Python_BME280
 and follow the instructions as outlined in the README file.<br/>
+(if your only going to use the "-no-sensor" versions, you can skip this step)<br/>
 
 d) To download the PiCamera library, go to https://picamera.readthedocs.io/en/release-1.13/install.html
 and follow the installation instructions on that page.<br/><br/>
@@ -224,7 +228,6 @@ I have specified the Raspberry Pi version/model and operating system version due
 Therefore I cannot judge the software's compatibility or stability with newer versions of the Raspberry Pi like the Pi2, Pi3 ect, Raspbian or Python 3.x.<br/><br/>
 
 If you are using any other versions of the Raspberry Pi, RasPi Camera, Raspbian or Python it is up to you to get it working for your setup. It would be impossible for me to test this software on every single configuration possible.<br/>
-
 
 
 ## Copyright
