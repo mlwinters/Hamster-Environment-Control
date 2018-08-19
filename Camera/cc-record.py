@@ -1,6 +1,6 @@
 ### Copyright ###
 # Hamster Environment Control
-# Version: 0.1.1 Alpha
+# Version: 0.1.2 Alpha
 # Copyright (C) 2018 Morgan Winters <morgan.l.winters@gmail.com
 # Author: Morgan Winters
 # Contributions: Adafruit Industries, Dave Jones <dave@waveform.org.uk>
@@ -54,15 +54,15 @@ import picamera
 
 ### SETUP ###
 ## Config Setup ##
-StatusFile = "/home/pi/Hamster-Environment-Control/hec-status.ini"
-try:
+StatusFile = "/home/pi/Hamster-Environment-Control/hec-status.ini"  ##### CHANGE THIS IF YOUR hec-status.ini FILE
+try:                                                                ##### IS SOMEWHERE ELSE #####
    StatusFile = "/home/pi/Hamster-Environment-Control/hec-status.ini"
    Status = ConfigParser.ConfigParser()
    Status.read(StatusFile)
 except:
   print("Unable to load " + StatusFile + ".")
-  print("Please make sure it is present and not corrupted and try again.")
-  print("")
+  print("Please make sure it is present and not corrupted and try again.")  ##### CHANGE THIS TO MATCH YOUR
+  print ("")                                                                ##### hec-status.ini file LOCATION #####
   print("Cage Camera Record will now exit")
   sleep(2)
   exit()
@@ -89,7 +89,7 @@ except:
 ## Variables ##
 ## Static Variables ##
 # Version #
-Version = "0.1.1 Alpha"
+Version = "0.1.2 Alpha"
 #
 
 # Pet Name #
