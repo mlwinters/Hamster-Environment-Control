@@ -1,31 +1,40 @@
 ### Copyright ###
-# Cage Camera Stream
-# Version: 0.1.1 Alpha
+# Hamster Environment Control
+# Version: 0.1.2 Alpha
+# Copyright (C) 2018 Morgan Winters <morgan.l.winters@gmail.com
 # Author: Morgan Winters
+# Contributions: Adafruit Industries, Dave Jones <dave@waveform.org.uk>
 # Created: 18/03/2018
-# Copyright (C) 2018 Morgan Winters
+# Modified By: <name>, <date>
 #
 # This file is part of Hamster Environment Control.
 #
-# Cage Camera Stream is free software: you can redistribute it and/or modify
+# Cage Camera Record is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # any later version.
 #
-# Cage Camera Stream is distributed in the hope that it will be useful,
+# Cage Camera Record is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Cage Camera Stream.  If not, see <http://www.gnu.org/licenses/>.
+# along with Cage Camera Record.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
 # This software contains code written by Adafruit Industires. These sections of code 
 # where taken from the example included with the BME280 library which was released under
 # the MIT license and can be found here: 
 # https://github.com/adafruit/Adafruit_Python_BME280
+#
+#
+# This software contains code written by Dave Jones. These sections of code 
+# where taken from the examples included on the PiCamera website and was released under
+# the GNU General Public License Version 2 and can be found here: 
+# https://picamera.readthedocs.io/en/release-1.13/
 ###
+
 
 ### Description ###
 # Cage Camera Stream uses the PiCamera Python library to stream a data from the Raspberry Pi Camera Module and pipes it to VLC to 
@@ -39,7 +48,6 @@
 ###
 
 
-
 ### IMPORTS ###
 import ConfigParser, shlex, subprocess 
 import datetime as dt
@@ -49,19 +57,20 @@ import picamera
 ###
 
 ### SETUP ###
-# Config Setup #
+## Config Setup ##
+StatusFile = "/home/pi/Hamster-Environment-Control/hec-status.ini"
 try:
-   ConfigFile = "/home/pi/Hamster-Environment-Control/hec-status.ini"
-   Config = ConfigParser.ConfigParser()
-   Config.read(ConfigFile)
+   StatusFile = "/home/pi/Hamster-Environment-Control/hec-status.ini"
+   Status = ConfigParser.ConfigParser()
+   Status.read(StatusFile)
 except:
-  print("Unable to load " + ConfigFile + ".")
+  print("Unable to load " + StatusFile + ".")
   print("Please make sure it is present and not corrupted and try again.")
   print("")
   print("Cage Camera Stream will now exit")
   sleep(2)
   exit()
-
+##
 
 ## Sensor Setup ##
 try:
@@ -84,7 +93,7 @@ except:
 ## Variables ##
 ## Static Variables ##
 # Version #
-Version = "0.1.1 Alpha"
+Version = "0.1.2 Alpha"
 #
 
 # Pet Name #
@@ -95,7 +104,10 @@ PetName = "Tux"
 AnnotationUpdateSpeed = 1
 
 # Camera #
+# This section was written by Dave Jones which was copied and was taken from the #
+# examples on the PiCamera website: https://picamera.readthedocs.io/en/release-1.13/ #
 Camera = picamera.PiCamera()
+# End of Dave Jones code #
 VlcCommand = "cvlc -vvv stream:///dev/stdin --sout '#rtp{sdp=rtsp://:8554/}' :demux=h264"
 #
 ##
@@ -110,7 +122,7 @@ CurrentPSI = "00.00"
 
 # Status #
 # Camera #
-RecordingStatus = False
+StreamingStatus = False
 #
 ##
 ###
@@ -135,61 +147,70 @@ def GetDay():
   return (day)
 #
 
-# Update Log File #
-def UpdateConfigFile(_section, _parameter, _value):
-  Config.set(_section, _parameter, _value)
-  with open(ConfigFile, 'wb') as cfg:
-    Config.write(cfg)
+# File IO #
+# Update Status File #
+def UpdateStatusFile(_section, _parameter, _value):
+  try:
+    Status.set(_section, _parameter, _value)
+    with open(StatusFile, 'wb') as tempstatus:
+      Status.write(tempstatus)
+  except:
+    print("Unable to write to hec-status.ini")
+    print("Please check it is located in: " + StatusFile)
 #
+##
 
 ## I2C ##
+# Temperature Sensor #
 def ReadSensor():
   global CurrentTemp
   global CurrentHumidity
   global CurrentMBar
   global CurrentPSI
   try:
-    # This section was written by Adafruit Industries and was copied and then modified from the #
+    # This section was written by Adafruit Indusdstries which was copied and then modified from the #
     # example file included with the Adafruit BME280 library: #
     # https://github.com/adafruit/Adafruit_Python_BME280/blob/master/Adafruit_BME280_Example.py #
     temp = sensor.read_temperature()
     humidity = sensor.read_humidity()
     pascals = sensor.read_pressure()
-    mbar = pascals / 100 + 12 # the plus 12 is a rough altitude compensation
+    mbar = pascals / 100 + 12 ##### plus 12 for altitude compensation, change the "+ 12" to suit your local altitude
     psi = mbar * 0.0145037738
     CurrentTemp = format(temp, ".2f")
     CurrentHumidity = format(humidity, ".2f")
     CurrentMBar = format(mbar, ".2f")
     CurrentPSI = format(psi, ".2f")
-    # End of Adafruit code #
+	# End of Adafruit code #
   except:
-    print("Unable to read temperature sensor.")
+    print("Failed to read temperature sensor.")
 #
 
-# Puts Sensor Readings Into A String 
+# Return Sensor Reading As A String #
 def GetSensorReading():
   global CurrentTemp
   global CurrentHumidity
   global CurrentMBar
   global CurrentPSI
-  try:
-    ReadSensor()
-    SensorReadingString = "Temperature; " + CurrentTemp + "C | Relative Humidity; " + CurrentHumidity + \
-                          "% | Pressure; " + CurrentMBar + "mB - " + CurrentPSI + "psi"
-    return (SensorReadingString)
-  except:
-    print("Unable to read temperature sensor.") 
-    return ("Unable to read temperature sensor.")
+  ReadSensor()
+  sensorReadingString = "Temperature: " + CurrentTemp + "C | Relative Humidity: " + \
+                        CurrentHumidity + "% | Pressure: " + CurrentMBar + "mBar - " + \
+                        CurrentPSI + "psi"
+  return (sensorReadingString)
 #
 ##
 
 ## Camera ##
 # Stream Camera
 def StreamCamera():
-  global RecordingStatus
+  global StreamingStatus
   global AnnotationUpdateSpeed
   print("Setting up camera...")
+  StreamingStatus = True
+  UpdateStatusFile('status', 'camera', "True")
+  cvlc = subprocess.Popen(shlex.split(VlcCommand), stdin=subprocess.PIPE)
   # Set camera capture options
+  # This section was written by Dave Jones which was copied and then modified from the #
+  # examples on the PiCamera website: https://picamera.readthedocs.io/en/release-1.13/ #
   Camera.resolution = (1280, 960)
   Camera.framerate = 25
   Camera.exposure_mode = "night"
@@ -201,25 +222,25 @@ def StreamCamera():
   Camera.vflip = False
   Camera.annotate_background = True
   Camera.annotate_text_size = 20
-  RecordingStatus = True
-  UpdateConfigFile('status', 'camera', "True")
-  cvlc = subprocess.Popen(shlex.split(VlcCommand), stdin=subprocess.PIPE)
-  print("Starting VLC...")
   Camera.start_recording(cvlc.stdin, format='h264')
+  # End of Dave Jones code #
 
-  while RecordingStatus:
+  while StreamingStatus:
     try:
       # Get HEC system status from HEC status file
-      Config.read(ConfigFile)
-      whitelightstatus = Config.get('status', 'whitelights')
-      redlightstatus = Config.get('status', 'redlights')
-      irlightstatus = Config.get('status', 'infraredlights')
-      climatecontrolstatus = Config.get('status', 'climatecontrol')
+      Status.read(StatusFile)
+      whitelightstatus = Status.get('status', 'whitelights')
+      redlightstatus = Status.get('status', 'redlights')
+      irlightstatus = Status.get('status', 'infraredlights')
+      climatecontrolstatus = Status.get('status', 'climatecontrol')
       # Overlay text to stream
+      # This section was written by Dave Jones which was copied and then modified from the #
+      # examples on the PiCamera website: https://picamera.readthedocs.io/en/release-1.13/ #
       Camera.annotate_text = PetName + " Cage-Cam\n\nTime; " + GetTime() + " (BST) | Date; " + \
                              GetDay() + " " + GetDate() + "\nWhite Lights; " + whitelightstatus + \
                              " | Red Lights; " + redlightstatus + " | Infrared Lights; " + irlightstatus + \
                              " | Climate Control; " + climatecontrolstatus + "\n" + GetSensorReading()
+      # End of Dave Jones code #
       sleep(AnnotationUpdateSpeed)
     except KeyboardInterrupt:
       print("cc-stream stopped.")
