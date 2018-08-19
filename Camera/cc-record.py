@@ -1,9 +1,11 @@
 ### Copyright ###
-# Cage Camera Record
-# Version: 0.1 Alpha
+# Hamster Environment Control
+# Version: 0.1.1 Alpha
+# Copyright (C) 2018 Morgan Winters <morgan.l.winters@gmail.com
 # Author: Morgan Winters
+# Contributions: Adafruit Industries, Dave Jones <dave@waveform.org.uk>
 # Created: 18/03/2018
-# Copyright (C) 2018 Morgan Winters
+# Modified By: <name>, <date>
 #
 # This file is part of Hamster Environment Control.
 #
@@ -25,7 +27,14 @@
 # where taken from the example included with the BME280 library which was released under
 # the MIT license and can be found here: 
 # https://github.com/adafruit/Adafruit_Python_BME280
+#
+#
+# Cage Camera Record contains code written by Dave Jones. These sections of code 
+# where taken from the examples included on the PiCamera website which was released under
+# the GNU General Public License Version 2 and can be found here: 
+# https://picamera.readthedocs.io/en/release-1.13/
 ###
+
 
 ### Description ###
 # Cage Camera Record uses the PiCamera library to record data from the Raspberry Pi Camera Module and saves it to h264 video file.
@@ -33,7 +42,6 @@
 # changed without stopping the recording. This program displays the time and date, white, red, infrared cage light status as well as
 # sensor data from the Adafruit BME280 temperature sensor and updates the text annotation once a second for the duration of the video.
 ###
-
 
 
 ### Imports ###
@@ -45,19 +53,20 @@ import picamera
 ###
 
 ### SETUP ###
-# Config Setup #
+## Config Setup ##
+StatusFile = "/home/pi/Hamster-Environment-Control/hec-status.ini"
 try:
-   ConfigFile = "/home/pi/Hamster-Environment-Control/hec-status.ini"
-   Config = ConfigParser.ConfigParser()
-   Config.read(ConfigFile)
+   StatusFile = "/home/pi/Hamster-Environment-Control/hec-status.ini"
+   Status = ConfigParser.ConfigParser()
+   Status.read(StatusFile)
 except:
-  print("Unable to load " + ConfigFile + ".")
+  print("Unable to load " + StatusFile + ".")
   print("Please make sure it is present and not corrupted and try again.")
   print("")
   print("Cage Camera Record will now exit")
   sleep(2)
   exit()
-
+##
 
 ## Sensor Setup ##
 try:
@@ -80,7 +89,7 @@ except:
 ## Variables ##
 ## Static Variables ##
 # Version #
-Version = "0.1 Alpha"
+Version = "0.1.1 Alpha"
 #
 
 # Pet Name #
@@ -96,7 +105,10 @@ VideoDirectory = "/home/pi/Hamster-Environment-Control/Videos/"
 #
 
 # Camera #
+# This section was written by Dave Jones and was taken from the #
+# examples on the PiCamera website: https://picamera.readthedocs.io/en/release-1.13/ #
 Camera = picamera.PiCamera()
+# End of Dave Jones code #
 #
 ##
 
@@ -118,7 +130,9 @@ TextOverlay = True
 # Camera #
 RecordingStatus = False
 #
+##
 ###
+
 
 ### Functions ###
 ## System ##
@@ -139,19 +153,28 @@ def GetDay():
   return (day)
 #
 
-# Update Log File #
-def UpdateConfigFile(_section, _parameter, _value):
-  Config.set(_section, _parameter, _value)
-  with open(ConfigFile, 'wb') as cfg:
-    Config.write(cfg)
+# File IO #
+# Update Status File #
+def UpdateStatusFile(_section, _parameter, _value):
+  try:
+    Status.set(_section, _parameter, _value)
+    with open(StatusFile, 'wb') as tempstatus:
+      Status.write(tempstatus)
+  except:
+    print("Unable to write to hec-status.ini")
+    print("Please check it is located in: " + StatusFile)
 #
+##
 
+## User Options ##
+# Get Video Filename #
 def GetVideoFilename():
   global VideoFile
   filenameTime = GetTime().split(":")
   filetime = filenameTime[0] + filenameTime[1]
-  VideoFile = "T " + filetime + "  D " + GetDate()
+  VideoFile = "T" + filetime + "-D" + GetDate()
   print ("Filename will be: " + VideoFile)
+#
 
 # Ask For Video Length #
 def AskLength():
@@ -181,22 +204,23 @@ def AskOverlay():
   else:
     print ("Please enter either a 'y' or a 'n'")
     AskOverlay()
-#
+##
 
 ## I2C ##
+# Temperature Sensor #
 def ReadSensor():
   global CurrentTemp
   global CurrentHumidity
   global CurrentMBar
   global CurrentPSI
   try:
-    # This section was written by Adafruit Indusdstries and was copied and then modified from the #
+    # This section was written by Adafruit Indusdstries which was copied and then modified from the #
     # example file included with the Adafruit BME280 library: #
     # https://github.com/adafruit/Adafruit_Python_BME280/blob/master/Adafruit_BME280_Example.py #
     temp = sensor.read_temperature()
     humidity = sensor.read_humidity()
     pascals = sensor.read_pressure()
-    mbar = pascals / 100 + 12
+    mbar = pascals / 100 + 12 ##### plus 12 for altitude compensation, change the "+ 12" to suit your local altitude
     psi = mbar * 0.0145037738
     CurrentTemp = format(temp, ".2f")
     CurrentHumidity = format(humidity, ".2f")
@@ -204,23 +228,20 @@ def ReadSensor():
     CurrentPSI = format(psi, ".2f")
 	# End of Adafruit code #
   except:
-      print("Failed to read temperature sensor.")
+    print("Failed to read temperature sensor.")
 #
     
-# Puts Sensor Readings Into A String 
+# Return Sensor Reading As A String #
 def GetSensorReading():
   global CurrentTemp
   global CurrentHumidity
   global CurrentMBar
   global CurrentPSI
-  try:
-    ReadSensor()
-    SensorReadingString = "Temperature; " + CurrentTemp + "C | Relative Humidity; " + CurrentHumidity + \
-                          "% | Pressure; " + CurrentMBar + "mBar - " + CurrentPSI + "psi"
-    return (SensorReadingString)
-  except:
-    print("Unable to read temperature sensor.") 
-    return ("Unable to read temperature sensor.")
+  ReadSensor()
+  sensorReadingString = "Temperature: " + CurrentTemp + "C | Relative Humidity: " + \
+                        CurrentHumidity + "% | Pressure: " + CurrentMBar + "mBar - " + \
+                        CurrentPSI + "psi"
+  return (sensorReadingString)
 #
 ##
 
@@ -234,7 +255,11 @@ def StartRecord():
   # Setup WaitToStop thread
   WaitToStopThread = threading.Thread(target=StopRecording)
   print("Setting up camera...")
+  UpdateStatusFile('status', 'camera', "True")
+  print ("Recording started at: " + GetTime() + "  " + GetDate())
   # Set camera capture options
+  # This section was written by Dave Jones which was copied and then modified from the #
+  # examples on the PiCamera website: https://picamera.readthedocs.io/en/release-1.13/ #
   Camera.resolution = (1280, 960)
   Camera.framerate = 25
   Camera.exposure_mode = "night"
@@ -247,11 +272,8 @@ def StartRecord():
   Camera.annotate_background = True
   Camera.annotate_text_size = 20
   RecordingStatus = True
-  # Update status file
-  UpdateConfigFile('status', 'camera', "True")
-  print ("Recording started at: " + GetTime() + "  " + GetDate())
-  # Start recording
   Camera.start_recording(VideoDirectory + VideoFile + ".h264", format='h264')
+  # End of Dave Jones code #
   WaitToStopThread.start()
   if TextOverlay == True:
     WhileRecording()
@@ -265,21 +287,27 @@ def WhileRecording():
   while RecordingStatus:
     try:
       # Get HEC system status from HEC status file
-      Config.read(ConfigFile)
-      whitelightstatus = Config.get('status', 'whitelights')
-      redlightstatus = Config.get('status', 'redlights')
-      irlightstatus = Config.get('status', 'infraredlights')
-      climatecontrolstatus = Config.get('status', 'climatecontrol')
+      Status.read(StatusFile)
+      whitelightstatus = Status.get('status', 'whitelights')
+      redlightstatus = Status.get('status', 'redlights')
+      irlightstatus = Status.get('status', 'infraredlights')
+      climatecontrolstatus = Status.get('status', 'climatecontrol')
       # Overlay text to stream
+      # This section was written by Dave Jones which was copied and then modified from the #
+      # examples on the PiCamera website: https://picamera.readthedocs.io/en/release-1.13/ #
       Camera.annotate_text = PetName + " Cage-Cam\n\nTime; " + GetTime() + " (BST) | Date; " + \
                              GetDay() + " " + GetDate() + "\nWhite Lights; " + whitelightstatus + \
                              " | Red Lights; " + redlightstatus + " | Infrared Lights; " + irlightstatus + \
                              " | Climate Control; " + climatecontrolstatus + "\n" + GetSensorReading()
+      # End of Dave Jones code #
       sleep(AnnotationUpdateSpeed)
     except KeyboardInterrupt:
       print ("cc-record stopped.")
-      UpdateConfigFile('status', 'camera', "False")
+      UpdateStatusFile('status', 'camera', "False")
+      # This section was written by Dave Jones which was copied and then modified from the #
+      # examples on the PiCamera website: https://picamera.readthedocs.io/en/release-1.13/ #
       Camera.stop_recording()
+      # End of Dave Jones code #
       raise
     except:
       print ("Unable to overlay text.")
@@ -291,10 +319,13 @@ def StopRecording():
   global RecordingStatus
   global VideoLength
   if RecordingStatus:
+    # This section was written by Dave Jones which was copied and then modified from the #
+    # examples on the PiCamera website: https://picamera.readthedocs.io/en/release-1.13/ #
     Camera.wait_recording(VideoLength)
     Camera.stop_recording()
+    # End of Dave Jones code #
     RecordingStatus  = False
-    UpdateConfigFile('status', 'camera', "False")
+    UpdateStatusFile('status', 'camera', "False")
     print ("Recording finished at: " + GetTime() + "  " + GetDate())
     sleep(1)
   else:
