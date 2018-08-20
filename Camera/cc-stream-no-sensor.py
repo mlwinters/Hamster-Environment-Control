@@ -1,6 +1,6 @@
 ### Copyright ###
 # Hamster Environment Control
-# Version: 0.1.1 Alpha
+# Version: 0.1.2 Alpha
 # Copyright (C) 2018 Morgan Winters <morgan.l.winters@gmail.com
 # Author: Morgan Winters
 # Contributions: Dave Jones <dave@waveform.org.uk>
@@ -68,7 +68,7 @@ except:
 ## Variables ##
 ## Static Variables ##
 # Version #
-Version = "0.1.1 Alpha"
+Version = "0.1.2 Alpha"
 #
 
 # Pet Name #
@@ -173,7 +173,7 @@ def StreamCamera():
       sleep(AnnotationUpdateSpeed)
     except KeyboardInterrupt:
       print("cc-stream stopped.")
-      UpdateConfigFile('status', 'camera', "False")
+      UpdateStatusFile('status', 'camera', "False")
       raise
     except:
       print ("Unable to overlay text.")
