@@ -1,6 +1,6 @@
-### Copyright ###
+### COPYRIGHT ###
 # Cage Camera Stream-no-sensor
-# Version: 0.1.3 Alpha
+# Version: 0.1.4 Alpha
 # Copyright (C) 2018 Morgan Winters <morgan.l.winters@gmail.com
 # Author: Morgan Winters
 # Contributions: Dave Jones <dave@waveform.org.uk>
@@ -30,7 +30,7 @@
 ###
 
 
-### Description ###
+### DESCRIPTION ###
 # Cage Camera Stream-no-sensor uses the PiCamera Python library to stream a data from the Raspberry Pi Camera
 # Module and pipes it to VLC to be streamed over a local network. PiCamera allows for greater flexibility than
 # just using the raspivid command. It allows for the text annotation to be refreshed and changed without stopping
@@ -69,7 +69,7 @@ except:
 ## Variables ##
 ## Static Variables ##
 # Version #
-Version = "0.1.3 Alpha"
+Version = "0.1.4 Alpha"
 #
 
 # Pet Name #
@@ -97,7 +97,7 @@ StreamingStatus = False
 ###
 
 
-### Functions ###
+### FUNCTIONS ###
 ## System ##
 # Get System Date/Time/Day #
 def GetTime():
@@ -136,7 +136,7 @@ def StreamCamera():
   global AnnotationUpdateSpeed
   print("Setting up camera...")
   StreamingStatus = True
-  UpdateStatusFile('status', 'camera', "True")
+  UpdateStatusFile('camera', 'camerastatus', "True")
   cvlc = subprocess.Popen(shlex.split(VlcCommand), stdin=subprocess.PIPE)
   # Set camera capture options
   # This section was written by Dave Jones which was copied and then modified from the #
@@ -159,10 +159,10 @@ def StreamCamera():
     try:
       # Get HEC system status from HEC status file
       Status.read(StatusFile)
-      whitelightstatus = Status.get('status', 'whitelights')
-      redlightstatus = Status.get('status', 'redlights')
-      irlightstatus = Status.get('status', 'infraredlights')
-      climatecontrolstatus = Status.get('status', 'climatecontrol')
+      whitelightstatus = Status.get('lighting', 'whitelights')
+      redlightstatus = Status.get('lighting', 'redlights')
+      irlightstatus = Status.get('lighting', 'infraredlights')
+      climatecontrolstatus = Status.get('climate', 'climatecontrol')
       # Overlay text to stream
       # This section was written by Dave Jones which was copied and then modified from the #
       # examples on the PiCamera website: https://picamera.readthedocs.io/en/release-1.13/ #
@@ -174,7 +174,7 @@ def StreamCamera():
       sleep(AnnotationUpdateSpeed)
     except KeyboardInterrupt:
       print("cc-stream stopped.")
-      UpdateStatusFile('status', 'camera', "False")
+      UpdateStatusFile('camera', 'camerastatus', "False")
       raise
     except:
       print ("Unable to overlay text.")
@@ -183,7 +183,7 @@ def StreamCamera():
 ##
 ###
 
-### Execute ###
+### EXECUTE ###
 ## Camera ##
 StreamCamera()
 ##

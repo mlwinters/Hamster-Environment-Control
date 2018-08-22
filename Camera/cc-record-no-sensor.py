@@ -1,6 +1,6 @@
-### Copyright ###
+### COPYRIGHT ###
 # Cage Camera Record-no-sensor
-# Version: 0.1.1 Alpha
+# Version: 0.1.2 Alpha
 # Copyright (C) 2018 Morgan Winters <morgan.l.winters@gmail.com
 # Author: Morgan Winters
 # Contributions: Dave Jones <dave@waveform.org.uk>
@@ -30,7 +30,7 @@
 ###
 
 
-### Description ###
+### DESCRIPTION ###
 # Cage Camera Record-no-sensor uses the PiCamera library to record data from the Raspberry Pi Camera
 # Module and saves it to h264 video file. This allows for greater flexiblty than just using the 
 # raspivid command. It allows for the text annotation to be refreshed and changed without stopping
@@ -40,7 +40,7 @@
 ###
 
 
-### Imports ###
+### IMPORTS ###
 import ConfigParser, os, threading
 import datetime as dt
 from time import sleep
@@ -67,7 +67,7 @@ except:
 ## Variables ##
 ## Static Variables ##
 # Version #
-Version = "0.1.1 Alpha"
+Version = "0.1.2 Alpha"
 #
 
 # Pet Name #
@@ -105,7 +105,7 @@ RecordingStatus = False
 ###
 
 
-### Functions ###
+### FUNCTIONS ###
 ## System ##
 # Get System Date/Time/Day #
 def GetTime():
@@ -187,7 +187,7 @@ def StartRecord():
   # Setup WaitToStop thread
   WaitToStopThread = threading.Thread(target=StopRecording)
   print("Setting up camera...")
-  UpdateStatusFile('status', 'camera', "True")
+  UpdateStatusFile('camera', 'camerastatus', "True")
   print ("Recording started at: " + GetTime() + "  " + GetDate())
   # Set camera capture options
   # This section was written by Dave Jones which was copied and then modified from the #
@@ -220,10 +220,10 @@ def WhileRecording():
     try:
       # Get HEC system status from HEC status file
       Status.read(StatusFile)
-      whitelightstatus = Status.get('status', 'whitelights')
-      redlightstatus = Status.get('status', 'redlights')
-      irlightstatus = Status.get('status', 'infraredlights')
-      climatecontrolstatus = Status.get('status', 'climatecontrol')
+      whitelightstatus = Status.get('lighting', 'whitelights')
+      redlightstatus = Status.get('lighting', 'redlights')
+      irlightstatus = Status.get('lighting', 'infraredlights')
+      climatecontrolstatus = Status.get('climate', 'climatecontrol')
       # Overlay text to stream
       # This section was written by Dave Jones which was copied and then modified from the #
       # examples on the PiCamera website: https://picamera.readthedocs.io/en/release-1.13/ #
@@ -235,7 +235,7 @@ def WhileRecording():
       sleep(AnnotationUpdateSpeed)
     except KeyboardInterrupt:
       print ("cc-record stopped.")
-      UpdateStatusFile('status', 'camera', "False")
+      UpdateStatusFile('camera', 'camerastatus', "False")
       # This section was written by Dave Jones which was copied and then modified from the #
       # examples on the PiCamera website: https://picamera.readthedocs.io/en/release-1.13/ #
       Camera.stop_recording()
@@ -257,7 +257,7 @@ def StopRecording():
     Camera.stop_recording()
     # End of Dave Jones code #
     RecordingStatus  = False
-    UpdateStatusFile('status', 'camera', "False")
+    UpdateStatusFile('camera', 'camerastatus', "False")
     print ("Recording finished at: " + GetTime() + "  " + GetDate())
     sleep(1)
   else:
@@ -266,7 +266,7 @@ def StopRecording():
 ##
 ###
 
-### Execute ###
+### EXECUTE ###
 ## Get Video Filename From Time/Date ##
 GetVideoFilename()
 ## Ask User For Text Overlay And Length ##
