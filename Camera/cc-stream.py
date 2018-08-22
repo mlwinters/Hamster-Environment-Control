@@ -1,6 +1,6 @@
 ### Copyright ###
-# Hamster Environment Control
-# Version: 0.1.4 Alpha
+# Cage Camera Stream
+# Version: 0.1.5 Alpha
 # Copyright (C) 2018 Morgan Winters <morgan.l.winters@gmail.com
 # Author: Morgan Winters
 # Contributions: Adafruit Industries, Dave Jones <dave@waveform.org.uk>
@@ -9,18 +9,18 @@
 #
 # This file is part of Hamster Environment Control.
 #
-# Cage Camera Record is free software: you can redistribute it and/or modify
+# Cage Camera Stream is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # any later version.
 #
-# Cage Camera Record is distributed in the hope that it will be useful,
+# Cage Camera Stream is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Cage Camera Record.  If not, see <http://www.gnu.org/licenses/>.
+# along with Cage Camera Stream.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
 # This software contains code written by Adafruit Industires. These sections of code 
@@ -37,14 +37,15 @@
 
 
 ### Description ###
-# Cage Camera Stream uses the PiCamera Python library to stream a data from the Raspberry Pi Camera Module and pipes it to VLC to 
-# be streamed over a local network. PiCamera allows for greater flexibility than just using the raspivid command. It allows
-# for the text annotation to be refreshed and changed without stopping the recording. This program displays the time and date,
-# white, red and infrared cage light status as well as sensor data from the Adafruit BME280 temperature sensor and updates
-# the text annotation once a second for the duration of the stream.
-# This program also uses the VLC library to stream camera data over a local network. VLC media player is then used to view the
-# stream from a client desktop/laptop/mobile device by entering "rtsp://<raspi ip address>:8554/" in "Open Network Stream".
-# PiCamera, VLC and the Adafruit BME280 libraries all need to be installed on your RasPi for this software to run.
+# Cage Camera Stream uses the PiCamera Python library to stream a data from the Raspberry Pi Camera Module and
+# pipes it to VLC to be streamed over a local network. PiCamera allows for greater flexibility than just using
+# the raspivid command. It allows for the text annotation to be refreshed and changed without stopping the
+# recording. This program displays the time and date, white, red and infrared cage light status as well as
+# sensor data from the Adafruit BME280 temperature sensor and updates the text annotation once a second for the
+# duration of the stream. This program also uses the VLC library to stream camera data over a local network.
+# VLC media player is then used to view the stream from a client desktop/laptop/mobile device by entering 
+# "rtsp://<raspi ip address>:8554/" in "Open Network Stream". PiCamera, VLC and the Adafruit BME280 
+# libraries all need to be installed on your RasPi for this software to run.
 ###
 
 
@@ -67,7 +68,7 @@ except:
   print("Unable to load " + StatusFile + ".")
   print("Please make sure it is present and not corrupted and try again.")  ##### CHANGE THIS TO MATCH YOUR
   print ("")                                                                ##### hec-status.ini file LOCATION #####
-  print("Cage Camera Record will now exit")
+  print("Cage Camera Stream will now exit")
   sleep(2)
   exit()
 ##
@@ -93,7 +94,7 @@ except:
 ## Variables ##
 ## Static Variables ##
 # Version #
-Version = "0.1.4 Alpha"
+Version = "0.1.5 Alpha"
 #
 
 # Pet Name #
@@ -243,6 +244,7 @@ def StreamCamera():
       # End of Dave Jones code #
       sleep(AnnotationUpdateSpeed)
     except KeyboardInterrupt:
+      StreamingStatus = False
       print("cc-stream stopped.")
       UpdateStatusFile('status', 'camera', "False")
       raise

@@ -1,6 +1,6 @@
 ### Copyright ###
-# Hamster Environment Control
-# Version: 0.1.0 Alpha
+# Cage Camera Record-no-sensor
+# Version: 0.1.1 Alpha
 # Copyright (C) 2018 Morgan Winters <morgan.l.winters@gmail.com
 # Author: Morgan Winters
 # Contributions: Dave Jones <dave@waveform.org.uk>
@@ -9,32 +9,34 @@
 #
 # This file is part of Hamster Environment Control.
 #
-# Cage Camera Record is free software: you can redistribute it and/or modify
+# Cage Camera Record-no-sensor is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # any later version.
 #
-# Cage Camera Record is distributed in the hope that it will be useful,
+# Cage Camera Record-no-sensor is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Cage Camera Record.  If not, see <http://www.gnu.org/licenses/>.
+# along with Cage Camera Record-no-sensor.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-# Cage Camera Record contains code written by Dave Jones. These sections of code 
-# where taken from the examples included on the PiCamera website which was released under
+# This software contains code written by Dave Jones. These sections of code 
+# where taken from the examples included on the PiCamera website and was released under
 # the GNU General Public License Version 2 and can be found here: 
 # https://picamera.readthedocs.io/en/release-1.13/
 ###
 
 
 ### Description ###
-# Cage Camera Record uses the PiCamera library to record data from the Raspberry Pi Camera Module and saves it to h264 video file.
-# This allows for greater flexiblty than just using the raspivid command. It allows for the text annotation to be refreshed and 
-# changed without stopping the recording. This program displays the time and date, white, red, infrared cage light status and
+# Cage Camera Record-no-sensor uses the PiCamera library to record data from the Raspberry Pi Camera
+# Module and saves it to h264 video file. This allows for greater flexiblty than just using the 
+# raspivid command. It allows for the text annotation to be refreshed and changed without stopping
+# the recording. This program displays the time and date, white, red, infrared cage light status and
 # updates the text annotation once a second for the duration of the video.
+# PiCamera needs to be installed on your RasPi for this software to run.
 ###
 
 
@@ -65,7 +67,7 @@ except:
 ## Variables ##
 ## Static Variables ##
 # Version #
-Version = "0.1.0 Alpha"
+Version = "0.1.1 Alpha"
 #
 
 # Pet Name #

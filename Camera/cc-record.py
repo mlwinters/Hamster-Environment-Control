@@ -1,6 +1,6 @@
 ### Copyright ###
-# Hamster Environment Control
-# Version: 0.1.2 Alpha
+# Cage Camera Record
+# Version: 0.1.3 Alpha
 # Copyright (C) 2018 Morgan Winters <morgan.l.winters@gmail.com
 # Author: Morgan Winters
 # Contributions: Adafruit Industries, Dave Jones <dave@waveform.org.uk>
@@ -37,10 +37,12 @@
 
 
 ### Description ###
-# Cage Camera Record uses the PiCamera library to record data from the Raspberry Pi Camera Module and saves it to h264 video file.
-# This allows for greater flexiblty than just using the raspivid command. It allows for the text annotation to be refreshed and 
-# changed without stopping the recording. This program displays the time and date, white, red, infrared cage light status as well as
-# sensor data from the Adafruit BME280 temperature sensor and updates the text annotation once a second for the duration of the video.
+# Cage Camera Record uses the PiCamera library to record data from the Raspberry Pi Camera
+# Module and saves it to h264 video file. This allows for greater flexiblty than just using
+# the raspivid command. It allows for the text annotation to be refreshed and changed without
+# stopping the recording. This program displays the time and date, white, red, infrared cage
+# light status as well as sensor data from the Adafruit BME280 temperature sensor and updates
+# the text annotation once a second for the duration of the video.
 ###
 
 
@@ -89,7 +91,7 @@ except:
 ## Variables ##
 ## Static Variables ##
 # Version #
-Version = "0.1.2 Alpha"
+Version = "0.1.3 Alpha"
 #
 
 # Pet Name #

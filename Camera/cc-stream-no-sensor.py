@@ -1,6 +1,6 @@
 ### Copyright ###
-# Hamster Environment Control
-# Version: 0.1.2 Alpha
+# Cage Camera Stream-no-sensor
+# Version: 0.1.3 Alpha
 # Copyright (C) 2018 Morgan Winters <morgan.l.winters@gmail.com
 # Author: Morgan Winters
 # Contributions: Dave Jones <dave@waveform.org.uk>
@@ -9,18 +9,18 @@
 #
 # This file is part of Hamster Environment Control.
 #
-# Cage Camera Record is free software: you can redistribute it and/or modify
+# Cage Camera Stream-no-sensor is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # any later version.
 #
-# Cage Camera Record is distributed in the hope that it will be useful,
+# Cage Camera Stream-no-sensor is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Cage Camera Record.  If not, see <http://www.gnu.org/licenses/>.
+# along with Cage Camera Stream-no-sensor.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
 # This software contains code written by Dave Jones. These sections of code 
@@ -31,13 +31,14 @@
 
 
 ### Description ###
-# Cage Camera Stream uses the PiCamera Python library to stream a data from the Raspberry Pi Camera Module and pipes it to VLC to 
-# be streamed over a local network. PiCamera allows for greater flexibility than just using the raspivid command. It allows
-# for the text annotation to be refreshed and changed without stopping the recording. This program displays the time and date,
-# white, red and infrared cage light status and updates the text annotation once a second for the duration of the stream.
-# This program also uses the VLC library to stream camera data over a local network. VLC media player is then used to view the
-# stream from a client desktop/laptop/mobile device by entering "rtsp://<raspi ip address>:8554/" in "Open Network Stream".
-# The PiCamera library and VLC need to be installed on your RasPi for this software to run.
+# Cage Camera Stream-no-sensor uses the PiCamera Python library to stream a data from the Raspberry Pi Camera
+# Module and pipes it to VLC to be streamed over a local network. PiCamera allows for greater flexibility than
+# just using the raspivid command. It allows for the text annotation to be refreshed and changed without stopping
+# the stream. This program displays the time and date, white, red and infrared cage light status and updates
+# the text annotation once a second for the duration of the stream. This program also uses the VLC library to
+# stream camera data over a local network. VLC media player is then used to view the stream from a client 
+# desktop/laptop/mobile device by entering "rtsp://<raspi ip address>:8554/" in "Open Network Stream". 
+# PiCamera and VLC need to be installed on your RasPi for this software to run.
 ###
 
 
