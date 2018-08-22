@@ -69,7 +69,7 @@ except:
 ## Variables ##
 ## Static Variables ##
 # Version #
-Version = "0.1.2 Alpha"
+Version = "0.1.3 Alpha"
 #
 
 # Pet Name #
