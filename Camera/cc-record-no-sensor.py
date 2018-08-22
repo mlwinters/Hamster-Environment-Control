@@ -1,6 +1,6 @@
 ### COPYRIGHT ###
 # Cage Camera Record-no-sensor
-# Version: 0.1.2 Alpha
+# Version: 0.1.3 Alpha
 # Copyright (C) 2018 Morgan Winters <morgan.l.winters@gmail.com
 # Author: Morgan Winters
 # Contributions: Dave Jones <dave@waveform.org.uk>
@@ -49,14 +49,16 @@ import picamera
 
 ### SETUP ###
 ## Config Setup ##
-StatusFile = "/home/pi/Hamster-Environment-Control/hec-status.ini"  ##### CHANGE THIS IF YOUR hec-status.ini FILE
-try:                                                                ##### IS SOMEWHERE ELSE #####
+##### CHANGE THIS IF YOUR hec-status.ini FILE IS SOMEWHERE ELSE #####
+StatusFile = "/home/pi/Hamster-Environment-Control/hec-status.ini"  
+try:
    Status = ConfigParser.ConfigParser()
    Status.read(StatusFile)
 except:
   print("Unable to load " + StatusFile + ".")
-  print("Please make sure it is present and not corrupted and try again.")  ##### CHANGE THIS TO MATCH YOUR
-  print ("")                                                                ##### hec-status.ini file LOCATION #####
+  ##### CHANGE THIS TO MATCH YOUR hec-status.ini file LOCATION #####
+  print("Please make sure it is present and not corrupted and try again.")  
+  print ("")
   print("Cage Camera Record will now exit")
   sleep(2)
   exit()
@@ -66,11 +68,12 @@ except:
 ## Variables ##
 ## Static Variables ##
 # Version #
-Version = "0.1.2 Alpha"
+Version = "0.1.3 Alpha"
 #
 
 # Pet Name #
-PetName = "Tux"  ##### CHANGE THIS TO YOUR PET'S NAME #####
+##### CHANGE THIS TO YOUR PET'S NAME #####
+PetName = "Tux"
 #
 
 # Text Annotation #
@@ -78,8 +81,9 @@ AnnotationUpdateSpeed = 1
 #
 
 # Video File #
-VideoDirectory = "/home/pi/Hamster-Environment-Control/Videos/"  ##### CHANGE THIS IF YOUR YOUR VIDEO FILES
-#                                                                ##### SAVED SOMEWHERE ELSE #####
+##### CHANGE THIS IF YOUR YOUR VIDEO FILES SAVED SOMEWHERE ELSE #####
+VideoDirectory = "/home/pi/Hamster-Environment-Control/Videos/"  
+#
 
 # Camera #
 # This section was written by Dave Jones and was taken from the #
