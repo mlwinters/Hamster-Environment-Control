@@ -1,6 +1,6 @@
 ### Copyright ###
 # GPIO Controller
-# Version: 0.1.0 Alpha
+# Version: 0.1.1 Alpha
 # Copyright (C) 2018 Morgan Winters
 # Author: Morgan Winters
 # Contributions: 
@@ -44,14 +44,16 @@ import RPi.GPIO as GPIO
 
 ### SETUP ###
 ## Load Status File ##
-StatusFile = "/home/pi/Hamster-Environment-Control/hec-status.ini"  ##### CHANGE THIS IF YOUR hec-status.ini FILE
-try:                                                                ##### IS SOMEWHERE ELSE #####
+##### CHANGE THIS IF YOUR hec-status.ini FILE IS SOMEWHERE ELSE #####
+StatusFile = "/home/pi/Hamster-Environment-Control/hec-status.ini"
+try:
   Status = ConfigParser.ConfigParser()
   Status.read(StatusFile)
 except:
   print ("Unable to load hec-status.ini.")
-  print ("Please ensure it is present in /home/pi/Hamster-Environment-Control/") ##### CHANGE THIS TO MATCH YOUR
-  print ("")                                                                     ##### hec-status.ini file LOCATION #####
+  ##### CHANGE THIS TO MATCH YOUR hec-status.ini file LOCATION #####
+  print ("Please ensure it is present in /home/pi/Hamster-Environment-Control/")
+  print ("")
   print ("GPIO Controller will now exit")
   sleep(2)
   exit()
@@ -69,7 +71,7 @@ GPIO.setup(27, GPIO.OUT)  # System Fan
 ## Variables ##
 ## Static Variables ##
 # Version #
-Version = "0.1.0 Alpha"
+Version = "0.1.1 Alpha"
 #
 
 # GPIO Pins #
@@ -194,8 +196,8 @@ def ToggleWhiteLights(_status):
     GPIO.output(WhitePin, False)
   else:
     GPIO.output(WhitePin, False)
-    PrintToFile("ToggleWhiteLights function was called with: " + str(_status) + " which is not a valid boolean value.",\
-                "White lights have been turned off.")
+    PrintToFile("ToggleWhiteLights function was called with: " + str(_status) + \
+                " which is not a valid boolean value.", "White lights have been turned off.")
     sleep(2)
 #
 
@@ -207,8 +209,8 @@ def ToggleRedLights(_status):
     GPIO.output(RedPin, False)
   else:
     GPIO.output(RedPin, False)
-    PrintToFile("ToggleRedLights function was called with: " + str(_status) + " which is not a valid boolean value.",\
-                "Red lights have been turned off.")
+    PrintToFile("ToggleRedLights function was called with: " + str(_status) + \
+                " which is not a valid boolean value.", "Red lights have been turned off.")
     sleep(2)
 #
 
@@ -220,8 +222,8 @@ def ToggleIRLights(_status):
     GPIO.output(InfraredPin, False)
   else:
     GPIO.output(InfraredPin, False)
-    PrintToFile("ToggleIRLights function was called with: " + str(_status) + " which is not a valid boolean value.",\
-                "IR lights have been turned off.")
+    PrintToFile("ToggleIRLights function was called with: " + str(_status) + \
+                " which is not a valid boolean value.", "IR lights have been turned off.")
     sleep(2)
 #
 
@@ -233,8 +235,8 @@ def ToggleSystemFan(_status):
     GPIO.output(SystemFanPin, False)
   else:
     GPIO.output(SystemFanPin, False)
-    PrintToFile("ToggleIRLights function was called with: " + str(_status) + " which is not a valid boolean value.",\
-                "IR lights have been turned off.")
+    PrintToFile("ToggleIRLights function was called with: " + str(_status) + \
+                " which is not a valid boolean value.", "IR lights have been turned off.")
     sleep(2)
 #
 ##
