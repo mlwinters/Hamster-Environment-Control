@@ -58,7 +58,6 @@ import picamera
 ## Config Setup ##
 StatusFile = "/home/pi/Hamster-Environment-Control/hec-status.ini"  ##### CHANGE THIS IF YOUR hec-status.ini FILE
 try:                                                                ##### IS SOMEWHERE ELSE #####
-   StatusFile = "/home/pi/Hamster-Environment-Control/hec-status.ini"
    Status = ConfigParser.ConfigParser()
    Status.read(StatusFile)
 except:
