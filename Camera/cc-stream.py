@@ -1,6 +1,6 @@
 ### COPYRIGHT ###
 # Cage Camera Stream
-# Version: 0.1.7 Alpha
+# Version: 0.1.8 Alpha
 # Copyright (C) 2018 Morgan Winters <morgan.l.winters@gmail.com
 # Author: Morgan Winters
 # Contributions: Adafruit Industries, Dave Jones <dave@waveform.org.uk>
@@ -95,12 +95,12 @@ except:
 ## Variables ##
 ## Static Variables ##
 # Version #
-Version = "0.1.7 Alpha"
+Version = "0.1.8 Alpha"
 #
 
 # Pet Name #
 ##### CHANGE THIS TO YOUR PET'S NAME #####
-PetName = "Tux"
+PetName = "Archimedes"
 #
 
 # Text Annotation #
@@ -209,7 +209,7 @@ def StreamCamera():
   global AnnotationUpdateSpeed
   print("Setting up camera...")
   StreamingStatus = True
-  UpdateStatusFile('camera', 'camerastatus', "True")
+  UpdateStatusFile('camera', 'camerastatus', "Streaming")
   cvlc = subprocess.Popen(shlex.split(VlcCommand), stdin=subprocess.PIPE)
   # Set camera capture options
   # This section was written by Dave Jones which was copied and then modified from the #

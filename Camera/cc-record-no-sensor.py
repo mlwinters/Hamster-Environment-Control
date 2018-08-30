@@ -1,6 +1,6 @@
 ### COPYRIGHT ###
 # Cage Camera Record-no-sensor
-# Version: 0.1.3 Alpha
+# Version: 0.1.4 Alpha
 # Copyright (C) 2018 Morgan Winters <morgan.l.winters@gmail.com
 # Author: Morgan Winters
 # Contributions: Dave Jones <dave@waveform.org.uk>
@@ -68,7 +68,7 @@ except:
 ## Variables ##
 ## Static Variables ##
 # Version #
-Version = "0.1.3 Alpha"
+Version = "0.1.4 Alpha"
 #
 
 # Pet Name #
@@ -190,7 +190,7 @@ def StartRecord():
   # Setup WaitToStop thread
   WaitToStopThread = threading.Thread(target=StopRecording)
   print("Setting up camera...")
-  UpdateStatusFile('camera', 'camerastatus', "True")
+  UpdateStatusFile('camera', 'camerastatus', "Recording")
   print ("Recording started at: " + GetTime() + "  " + GetDate())
   # Set camera capture options
   # This section was written by Dave Jones which was copied and then modified from the #
