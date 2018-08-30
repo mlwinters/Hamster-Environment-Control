@@ -97,7 +97,7 @@ Version = "0.1.6 Alpha"
 
 # Pet Name #
 ##### CHANGE THIS TO YOUR PET'S NAME #####
-PetName = "Archimedes"
+PetName = "Tux"
 #
 
 # Text Annotation #
