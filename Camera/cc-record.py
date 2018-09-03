@@ -1,9 +1,9 @@
 ### Copyright ###
 # Cage Camera Record
-# Version: 0.1.6 Alpha
-# Copyright (C) 2018 Morgan Winters <morgan.l.winters@gmail.com
-# Author: Morgan Winters
-# Contributions: Adafruit Industries, Dave Jones <dave@waveform.org.uk>
+# Version: 0.1.7 Alpha
+# Copyright (C) 2018 Morgan Winters
+# Author: Morgan Winters  <morgan.l.winters@gmail.com>
+# Contributions: Adafruit Industries, Dave Jones  <dave@waveform.org.uk>
 # Created: 18/03/2018
 # Modified By: <name>, <date>
 #
@@ -92,7 +92,7 @@ except:
 ## Variables ##
 ## Static Variables ##
 # Version #
-Version = "0.1.6 Alpha"
+Version = "0.1.7 Alpha"
 #
 
 # Pet Name #
