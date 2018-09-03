@@ -47,8 +47,8 @@ Hardware:<br/>
 Raspberry Pi 1 Model B (512Mb RAM),<br/>
 Minimum of 8Gb SD Card (32Gb recommended),<br/>
 5V DC power supply with minimum of 1.0A output current (just for RPi) (2.5Amp for newer RPi 2/3 and fitted with a fast blow fuse),<br/>
-Seperate 15V DC power supply with minimum of 1.0A output current (for rest of electronics)(with a fast blow fuse),<br/>
-Raspberry Pi Camera (Version 2 (8MP)),<br/>
+Seperate 15V DC power supply with minimum of 1.0A output current (for rest of electronics) (with a fast blow fuse),<br/>
+Raspberry Pi Camera (Version 2, 8MP),<br/>
 Adafruit BME280 temperature sensor,<br/>
 Local network connection (for viewing network camera, log files ect),<br/>
 Internet connection (for installation and at system startup to time/date unless you have a RTC),<br/>
@@ -121,16 +121,19 @@ sudo apt-get install git RPi.GPIO python-pip python-dev python-rpi.gpio vlc
 If these packages are already installed, apt-get won't try to reinstall them.<br/><br/>
 
 b) Once they have all downloaded, go to the following address to download the Adafruit GPIO library:<br/>
-https://github.com/adafruit/Adafruit_Python_GPIO and follow the instructions as outlined in the README file.<br/>
+https://github.com/adafruit/Adafruit_Python_GPIO<br/>
+and follow the instructions as outlined in the README file.
 (if your only going to use the "-no-sensor" versions of the camera software, you can skip this step)<br/><br/>
 
 c) (Downloading/Installing Adafruit BME280 library)
 When complete, go to the following address to download the Adafruit BME280 library:<br/>
-https://github.com/adafruit/Adafruit_Python_BME280 and follow the instructions as outlined in the README file.<br/>
+https://github.com/adafruit/Adafruit_Python_BME280<br/>
+and follow the instructions as outlined in the README file.<br/>
 (if your only going to use the "-no-sensor" versions of the camera software, you can skip this step)<br/><br/>
 
 d) Next you need to download the PiCamera library, go to:<br/>
-https://picamera.readthedocs.io/en/release-1.13/install.html and follow the installation instructions on that page.<br/><br/>
+https://picamera.readthedocs.io/en/release-1.13/install.html<br/>
+and follow the installation instructions on that page.<br/><br/><br/>
 
 
 Step 4 (Downloading Hamster Environment Control)<br/>
@@ -172,10 +175,12 @@ Go all the way down untill you find "exit()" and insert a new line above with th
 ```
 sudo python /home/pi/Hamster-Environment-Control/HEC.py
 ```
+
 Then press Ctrl+X to save the changes, HEC will then run on startup. To stop this, type
 ```
 sudo nano /etc/rc.local
 ```
+
 Again and either remove the line your added previously or simply insert a "#" infront of it, save it and restart your RPi.<br/>
 
 
@@ -193,6 +198,7 @@ To record camera data to a video file, type the following:
 ```
 sudo python /home/pi/Hamster-Environment-Control/Camera/cc-record.py
 ```
+<br/>
 cc-record.py will ask you to specify a the length for the video, type in a value in whole minutes.<br/>
 cc-record.py will also ask you if you want the text annotation to be overlayed on the video.<br/>
 Once the recording has started, your video file will be saved to:<br/>
