@@ -237,15 +237,15 @@ The camera is not controlled by the main Hamster Environment Control program but
 
 ## License
 
-Hamster Environment Control free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.<br/><br/>
+Hamster Environment Control free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.<br/>
 
-Hamster Environment Control is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.<br/><br/>
+Hamster Environment Control is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.<br/><
 
-You should have received a copy of the GNU General Public License along with Hamster Environment Control.  If not, see <http://www.gnu.org/licenses/>.<br/><br/>
+You should have received a copy of the GNU General Public License along with Hamster Environment Control.  If not, see <http://www.gnu.org/licenses/>.<br/>
 
-This software contains code written by Adafruit Industires. These sections of code where taken from the example included with the BME280 library which was released under the MIT license and can be found here: https://github.com/adafruit/Adafruit_Python_BME280 <br/><br/>
+This software contains code written by Adafruit Industires. These sections of code where taken from the example included with the BME280 library which was released under the MIT license and can be found here: https://github.com/adafruit/Adafruit_Python_BME280 <br/>
 
-This software contains code written by Dave Jones. These sections of code where taken from the examples included on the PiCamera website which was released under the GNU General Public License Version 2 and can be found here: https://picamera.readthedocs.io/en/release-1.13/<br/><br/>
+This software contains code written by Dave Jones. These sections of code where taken from the examples included on the PiCamera website which was released under the GNU General Public License Version 2 and can be found here: https://picamera.readthedocs.io/en/release-1.13/<br/>
 
 
 ## Copyright
@@ -260,7 +260,7 @@ Adafruit Industries, Dave Jones <dave@waveform.org.uk><br/><br/>
 
 ## Community Contributions
 
-Being an open source project, I welcome people contributing to this software but please note that any changes will be fully tested over a few days or weeks to ensure stability. Thus changes or Commits to this repo will not happen straight away. Also, some contributions may not be used for one reason or another, I will do my best to explain why I haven't included your contribution. Please don't be offended if I don't use your code.<br/><br/>
+Being an open source project, I welcome people contributing to this software but please note that any changes will be fully tested over a few days or weeks to ensure stability. Thus changes or Commits to this repo will not happen straight away. Also, some contributions may not be used for one reason or another, I will do my best to explain why I haven't included your contribution. Please don't be offended if I don't use your code.<br/>
 
 This software is released under the GNU GPL V3, therefore your code contributions must be supplied under the same license.<br/>
 
@@ -270,9 +270,9 @@ As stated in the License section, you can download, execute, modify and redistri
 ## Misc
 
 I have specified the Raspberry Pi version/model and operating system version due to the fact that I have not tested these programs on any later version of the Raspberry Pi, Raspbian or with Python 3.x.<br/>
-Therefore I cannot judge the software's compatibility or stability with newer versions of the Raspberry Pi like the Pi2, Pi3 ect, Raspbian or Python 3.x.<br/><br/>
+Therefore I cannot judge the software's compatibility or stability with newer versions of the Raspberry Pi like the Pi2, Pi3 ect, Raspbian or Python 3.x.<br/>
 
-If you are using any newer versions of the Raspberry Pi, RasPi Camera, Raspbian or Python it is up to you to get it working for your setup. I cannot test this software on every single hardware configuration possible.<br/><br/>
+If you are using any newer versions of the Raspberry Pi, RasPi Camera, Raspbian or Python it is up to you to get it working for your setup. I cannot test this software on every single hardware configuration possible.<br/>
 
 Although this is NOT a requirement, I would appreciate it if anyone who redistributes versions of Hamster Environment Control or the camera software could send me a quick email with a link to your project. Again contacting me is NOT required and is completely optional.<br/>
 
