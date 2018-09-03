@@ -218,10 +218,10 @@ Please note that cc-stream.py and cc-stream-no-sensor.py do tend to have a coupl
 Automatic Cage Lighting;<br/>
 White cage lights are enabled between 0900 and 1800 automatically.<br/>
 Red cage lights are enabled between 1800 and 0000 automatically.<br/>
-Infrared cage lights are enabled between 0000 and 0900 automatically but only if the camera is running (either recording or streaming).<br/><br/>
+Infrared cage lights are enabled between 0000 and 0900 automatically but only if the camera is running (either recording or streaming).<br/>
 
 Climate Control;<br/>
-Temperature is read once a second and writes an entry to the log file if the cage temperature reaches the either the minimum, normal or maximum temperatures. The system fan is also enabled when temperature is too high to reduce the risk of the power supply from overheating.<br/><br/>
+Temperature is read once a second and writes an entry to the log file if the cage temperature reaches the either the minimum, normal or maximum temperatures. The system fan is also enabled when temperature is too high to reduce the risk of the power supply from overheating.<br/>
 
 Event Logging;<br/>
 This logs system events to a text file for review at a later time/date. System will create a new log file every 24 hours (at midnight) and a new folder inside /HEC-Logs every week (sunday/monday midnight).<br/>
