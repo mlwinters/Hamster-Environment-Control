@@ -189,12 +189,12 @@ Just to start Hamster Environment Control while the RPi is running, simply type 
 sudo python /home/pi/Hamster-Environment-Control/HEC.py
 ```
 <br/>
-To stream camera data over a local network, type the following:
+To stream camera data over a local network, type the following
 ```
 python /home/pi/Hamster-Environment-Control/Camera/cc-stream.py
 ```
 <br/>
-To record camera data to a video file, type the following:
+To record camera data to a video file, type the following
 ```
 sudo python /home/pi/Hamster-Environment-Control/Camera/cc-record.py
 ```
