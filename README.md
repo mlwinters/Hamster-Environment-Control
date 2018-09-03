@@ -118,22 +118,21 @@ a) Once RPi has restarted, login as normal and then type<br/>
 ```
 sudo apt-get install git RPi.GPIO python-pip python-dev python-rpi.gpio vlc
 ```
-If these packages are already installed, apt-get won't try to reinstall them.<br/><br/>
+If these packages are already installed, apt-get won't try to reinstall them.<br/>
 
 b) Once they have all downloaded, go to the following address to download the Adafruit GPIO library:<br/>
 https://github.com/adafruit/Adafruit_Python_GPIO<br/>
 and follow the instructions as outlined in the README file.
-(if your only going to use the "-no-sensor" versions of the camera software, you can skip this step)<br/><br/>
+(if your only going to use the "-no-sensor" versions of the camera software, you can skip this step)<br/>
 
-c) (Downloading/Installing Adafruit BME280 library)
-When complete, go to the following address to download the Adafruit BME280 library:<br/>
+c) When the Adafruit GPIO library has been downloaded, go to the following address to download the Adafruit BME280 library:<br/>
 https://github.com/adafruit/Adafruit_Python_BME280<br/>
 and follow the instructions as outlined in the README file.<br/>
-(if your only going to use the "-no-sensor" versions of the camera software, you can skip this step)<br/><br/>
+(if your only going to use the "-no-sensor" versions of the camera software, you can skip this step)<br/>
 
 d) Next you need to download the PiCamera library, go to:<br/>
 https://picamera.readthedocs.io/en/release-1.13/install.html<br/>
-and follow the installation instructions on that page.<br/><br/><br/>
+and follow the installation instructions on that page.<br/><br/>
 
 
 Step 4 (Downloading Hamster Environment Control)<br/>
