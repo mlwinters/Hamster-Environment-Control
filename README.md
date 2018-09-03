@@ -147,7 +147,7 @@ b) Once HEC has downloaded, run the following command to run the setup file,
 ```
 sudo python Hamster-Environment-Control/HEC-Setup.py
 ```
-This will create two folder inside the Hamster Environment Control folder for the log files and videos. It also sets the file permissions of hec-status.ini to 007 to allow cc-stream.py to read/write to it.<br/><br/>
+This will create two folder inside the Hamster Environment Control folder for the log files and videos. It also sets the file permissions of hec-status.ini to allow cc-stream.py to read/write to it.<br/><br/>
 
 
 ## Configuration
