@@ -143,12 +143,12 @@ cd
 sudo git clone https://github.com/mlwinters/Hamster-Environment-Control
 ```
 
-b) Finally we need to create a couple of folders inside the Hamster-Environment-Control folder we just downloaded, one for the system log files the second is where cc-record.py will save your video files to.
+b) Once HEC has downloaded, run the following command to run the setup file,
 ```
-cd Hamster-Environment-Control
-sudo mkdir HEC-Logs
-sudo mkdir Videos
+sudo python Hamster-Environment-Control/setup.py
 ```
+This will create two folder inside the Hamster Environment Control folder for the log files and videos. It also sets the file permissions of hec-status.ini to 007 to allow cc-stream.py to read/write to it.<br/><br/>
+
 
 ## Configuration
 
