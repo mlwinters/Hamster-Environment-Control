@@ -1,8 +1,8 @@
 ### COPYRIGHT ###
 # Cage Camera Record-no-sensor
 # Version: 0.1.4 Alpha
-# Copyright (C) 2018 Morgan Winters <morgan.l.winters@gmail.com
-# Author: Morgan Winters
+# Copyright (C) 2018 Morgan Winters
+# Author: Morgan Winters <morgan.l.winters@gmail.com>
 # Contributions: Dave Jones <dave@waveform.org.uk>
 # Created: 18/03/2018
 # Modified By: <name>, <date>
