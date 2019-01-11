@@ -192,6 +192,11 @@ To stream camera data over a local network, type the following
 ```
 python /home/pi/Hamster-Environment-Control/Camera/cc-stream.py
 ```
+Note that by default Linux will prevent you from accessing the I2C bus without root privileges, however VLC will prevent you from running cc-stream.py with the sudo command. To fix this type the following
+```
+sudo adduser pi i2c
+sudo reboot
+```
 
 To record camera data to a video file, type the following
 ```
