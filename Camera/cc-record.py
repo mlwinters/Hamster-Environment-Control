@@ -73,7 +73,7 @@ except:
 
 ## Sensor Setup ##
 try:
-  # This section was written by Adafruit Indusdstries and was taken from the #
+  # This section was written by Adafruit Industries and was taken from the #
   # example file included with the Adafruit BME280 library: #
   # https://github.com/adafruit/Adafruit_Python_BME280/blob/master/Adafruit_BME280_Example.py #
   sensor = BME280(t_mode=BME280_OSAMPLE_8, p_mode=BME280_OSAMPLE_8, h_mode=BME280_OSAMPLE_8)
@@ -219,7 +219,7 @@ def ReadSensor():
   global CurrentMBar
   global CurrentPSI
   try:
-    # This section was written by Adafruit Indusdstries which was copied and then modified from the #
+    # This section was written by Adafruit Industries which was copied and then modified from the #
     # example file included with the Adafruit BME280 library: #
     # https://github.com/adafruit/Adafruit_Python_BME280/blob/master/Adafruit_BME280_Example.py #
     temp = sensor.read_temperature()
